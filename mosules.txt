@@ -1,0 +1,67 @@
+---------- Setup Frontend with Rect App -------------
+
+1. npm i axios 
+2. npm i jwt-decode 
+3. npm i moment 
+4. npm i node-sass 
+5. npm i react-hot-toast
+6. npm i react-icons 
+7. npm i react-alert 
+8. npm i react-alert-template-basic
+9. npm i react-redux
+10. npm i redux
+11. npm redux-thunk
+12. npm i react-router-dom 
+13. npm i socket.io-client
+ 
+
+npm i axios moment jwt-decode node-sass react-alert react-alert-template-basic react-hot-toast react icons react-redux redux redux-thunk react-router-dom socket.io-client
+
+
+---------- Setup Backend Node Express -------------
+
+1. npm init --y
+2. npm i bcrypt
+3. npm i body-parser
+4. npm i concurrently
+5. npm i cookie-parser
+6. npm i dotenv
+7. npm i express
+8. npm i formidable
+9. npm i jsonwebtoken
+10. npm i mongoose
+11. npm nodemon
+12. npm i validator 
+
+npm i bcrypt body-parser concurrently cookie-parser dotenv express formidable jsonwebtoken mongoose nodemon validator 
+
+
+
+פרונטנד מודולים
+
+אקסיוס מחזיק את כל הבקשות
+ג'י דבליו טי דיקודד משומש שאנחנו מתקינים את כל הדברים לאקספרס את כל המודולים 
+ומומנט זה הזמנים של כל הדברים
+נוד סאס זה חבילה בשביל הסיאסאס
+ריאקט הוט הוסטר מאפשר להראות הודעה בנטיפיקיישן 
+ריאקט אייקון זה איקונים
+ריאקט אלרט זה לעדכן כל אלרט
+ריאקט אלרט טמפלט בסיק  
+רידוקס טונקס מאפשר להשתמש בכל הםפעולות שצריך אסינק
+ראוטר דום זה לכל היורל
+סוקט אי או זה הלייב צ'ט אפליקשיין
+
+באקאנד
+
+איניט יס יצירת פאקדג גייסון
+ביקריפ מאפשר להכניס קוד לכל דאטה בדאטה בייס
+בודי פארסר  להציג את כל גייסון דאטה
+קורנקרנטלי מאפשר להריץ ולחבר את הבקאנד והפרונטנד באותו זמן בפקודה אחת (npm run dev)
+קוקי פרסר מאפשר לשמור את ההתחברות
+דוט אי אנבי מאפשר ליצור משתנים ולקרוא לאותו משתנה מדפים שונים
+אקפרס זה פריימורק של גייס
+פורמידבל משמש להשתמש לקבצים כמו תמונות וכו
+גייסון ווב טוקן יוצר טוקן
+מונגוס זה הקישוריות לדאטה בייס
+נוד מון מאפשר להריץ את האקפרס 
+ואלידטור בשביל הולידציה
