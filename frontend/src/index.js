@@ -1,12 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import "./main.scss";
 import { Provider } from "react-redux";
 import store from "./store/index.js";
+
 import { positions, transitions, Provider as AlertProvider } from "react-alert";
-import AlertTemplate from "react-alert-template-basic";
+import alertTemplate from "react-alert-template-basic";
 
 const options = {
   timeout: 5000,
@@ -14,11 +15,11 @@ const options = {
   transitions: transitions.SCALE,
 };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <Provider store={store}>
-    <AlertProvider template={AlertTemplate} {...options}>
+    <AlertProvider template={alertTemplate} {...options}>
       <App />
     </AlertProvider>
-  </Provider>
+  </Provider>,
+  document.getElementById("root")
 );
