@@ -1,10 +1,10 @@
 const formidable = require("formidable");
 const registerModel = require("../models/authModel");
-const validator = require("../models/validator");
+const validator = require("validator");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { validatePassword, emailValidate } = require("../utils/validator");
+const { validatePassword } = require("../utils/validator");
 
 module.exports.userRegister = (req, res) => {
   const form = formidable();
