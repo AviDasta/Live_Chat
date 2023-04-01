@@ -1,5 +1,6 @@
 const formidable = require("formidable");
 const registerModel = require("../models/authModel");
+const validator = require("../models/validator");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -15,9 +16,15 @@ module.exports.userRegister = (req, res) => {
     if (!userName) {
       error.push(" הקש בבקשה את שם המשתמש שלך");
     }
-    const emailValid = emailValidate(email);
-    if (emailValid) {
-      error.push(emailValid);
+    // const emailValid = emailValidate(email);
+    // if (emailValid) {
+    //   error.push(emailValid);
+    // }
+    if (!email) {
+      return " הקש בבקשה את האימייל שלך";
+    }
+    if (!email && validator.isEmail(email)) {
+      return "הקש בבקשה את האימייל העדכני שלך";
     }
     const passwordError = validatePassword(password, confirmPassword);
     if (passwordError) {

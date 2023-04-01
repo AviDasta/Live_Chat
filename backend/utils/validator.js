@@ -15,15 +15,15 @@ const validatePassword = (password, confirmPassword) => {
   return null;
 };
 
-const emailValidate = (email) => {
-  console.log("isEmail", validator.isEmail(email));
-  if (!email) {
-    return " הקש בבקשה את האימייל שלך";
-  }
-  if (!email && validator.isEmail(email)) {
-    return "הקש בבקשה את האימייל העדכני שלך";
-  }
-  return null;
-};
+// const emailValidate = (email) => {
+//   console.log("isEmail", validator.isEmail(email));
+//   if (!email) {
+//     return " הקש בבקשה את האימייל שלך";
+//   }
+//   if (!email && validator.isEmail(email)) {
+//     return "הקש בבקשה את האימייל העדכני שלך";
+//   }
+//   return null;
+// };
 
-module.exports = { validatePassword, emailValidate };
+module.exports = { validatePassword };
