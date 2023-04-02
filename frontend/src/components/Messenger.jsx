@@ -2,11 +2,14 @@ import React, { useEffect } from "react";
 import { FaEllipsisH, FaEdit, FaSistrix } from "react-icons/fa";
 import ActiveFriend from "./ActiveFriend";
 import Friends from "./Friends";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import RightSide from "./RightSide";
 import { getFriends } from "../store/actions/messengerAction";
 
 const Messenger = () => {
+  const { friends } = useSelector((state) => state.messenger);
+  console.log(friends);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getFriends());
@@ -50,9 +53,13 @@ const Messenger = () => {
               <ActiveFriend />
             </div>
             <div className="friends">
-              <div className="hover-friend">
-                <Friends />
-              </div>
+              {friends && friends.length > 0
+                ? friends.map((fd) => (
+                    <div className="hover-friend">
+                      <Friends friend={fd} />
+                    </div>
+                  ))
+                : "No Friend"}
             </div>
           </div>
         </div>

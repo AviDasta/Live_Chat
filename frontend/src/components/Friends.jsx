@@ -1,16 +1,16 @@
 import React from "react";
 
-const Friends = () => {
+const Friends = ({ friend }) => {
   return (
     <div className="friend">
       <div className="friend-image">
         <div className="image">
-          <img src="/image/1507587287ariyan.jpg" alt="" />
+          <img src={`./image/${friend.image}`} alt="" />
         </div>
       </div>
       <div className="friend-name-seen">
         <div className="friend-name">
-          <h4>איציק</h4>
+          <h4>{friend.userName}</h4>
         </div>
       </div>
     </div>
