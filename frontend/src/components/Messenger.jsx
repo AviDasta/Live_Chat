@@ -8,7 +8,16 @@ import { getFriends } from "../store/actions/messengerAction";
 
 const Messenger = () => {
   const [currentFriend, setCurrentFriend] = useState("");
-  console.log(currentFriend);
+  const [newMessage, setNewMessage] = useState("");
+  const inputHendle = (e) => {
+    setNewMessage(e.target.value);
+  };
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    console.log(newMessage);
+  };
+
   const { friends } = useSelector((state) => state.messenger);
   const { myInfo } = useSelector((state) => state.auth);
 
@@ -16,6 +25,12 @@ const Messenger = () => {
   useEffect(() => {
     dispatch(getFriends());
   }, []);
+
+  useEffect(() => {
+    if (friends && friends.length > 0) {
+      setCurrentFriend(friends[0]);
+    }
+  }, [friends]);
   return (
     <div className="messenger">
       <div className="row">
@@ -69,7 +84,12 @@ const Messenger = () => {
           </div>
         </div>
         {currentFriend ? (
-          <RightSide currentFriend={currentFriend} />
+          <RightSide
+            currentFriend={currentFriend}
+            inputHendle={inputHendle}
+            newMessage={newMessage}
+            sendMessage={sendMessage}
+          />
         ) : (
           "בחר בבקשה משתמש"
         )}
