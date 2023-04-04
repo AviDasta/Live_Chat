@@ -23,3 +23,9 @@ export const messageSend = (data) => async (dispatch) => {
     console.log(error.response.data);
   }
 };
+
+export const getMessage = (id) => {
+  return async (dispatch) => {
+    console.log(id);
+  };
+};

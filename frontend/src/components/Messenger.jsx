@@ -4,7 +4,11 @@ import ActiveFriend from "./ActiveFriend";
 import Friends from "./Friends";
 import { useDispatch, useSelector } from "react-redux";
 import RightSide from "./RightSide";
-import { getFriends, messageSend } from "../store/actions/messengerAction";
+import {
+  getFriends,
+  messageSend,
+  getMessage,
+} from "../store/actions/messengerAction";
 
 const Messenger = () => {
   const [currentFriend, setCurrentFriend] = useState("");
@@ -36,6 +40,9 @@ const Messenger = () => {
       setCurrentFriend(friends[0]);
     }
   }, [friends]);
+  useEffect(() => {
+    dispatch(getMessage([currentFriend?._id]));
+  }, [currentFriend?._id]);
   return (
     <div className="messenger">
       <div className="row">
