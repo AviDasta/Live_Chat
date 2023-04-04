@@ -89,13 +89,13 @@ module.exports.userRegister = (req, res) => {
                 ),
               };
               res.status(201).cookie("authToken", token, options).json({
-                successMessage: "You Registered Successfully",
+                successMessage: "ההרשמה הוצלחה",
                 token,
               });
             } else {
               res.status(500).json({
                 error: {
-                  errorMessage: ["Internal Server Error"],
+                  errorMessege: ["קיימת בעיה בשרת"],
                 },
               });
             }
@@ -104,12 +104,12 @@ module.exports.userRegister = (req, res) => {
       } catch (error) {
         res.status(500).json({
           error: {
-            errorMessage: ["Internal Server Error"],
+            errorMessege: ["קיימת בעיה בשרת"],
           },
         });
       }
     }
-  }); // סוף של פורמידבל
+  });
 };
 
 module.exports.userLogin = async (req, res) => {
