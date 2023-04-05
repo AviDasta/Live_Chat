@@ -47,6 +47,10 @@ const Messenger = () => {
   useEffect(() => {
     scrollRef.current?.scrollIntroView({ behavior: "smooth" });
   }, [message]);
+
+  const emojiSend = (emu) => {
+    setNewMessage(`${newMessage}` + emu);
+  };
   return (
     <div className="messenger">
       <div className="row">
@@ -111,6 +115,7 @@ const Messenger = () => {
             sendMessage={sendMessage}
             message={message}
             scrollRef={scrollRef}
+            emojiSend={emojiSend}
           />
         ) : (
           "בחר בבקשה משתמש"
