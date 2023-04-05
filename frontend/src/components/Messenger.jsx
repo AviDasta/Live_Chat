@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FaEllipsisH, FaEdit, FaSistrix } from "react-icons/fa";
 import ActiveFriend from "./ActiveFriend";
 import Friends from "./Friends";
@@ -11,6 +11,7 @@ import {
 } from "../store/actions/messengerAction";
 
 const Messenger = () => {
+  const scrollRef = useRef();
   const [currentFriend, setCurrentFriend] = useState("");
   const [newMessage, setNewMessage] = useState("");
   const inputHendle = (e) => {
@@ -27,7 +28,7 @@ const Messenger = () => {
     dispatch(messageSend(data));
   };
 
-  const { friends } = useSelector((state) => state.messenger);
+  const { friends, message } = useSelector((state) => state.messenger);
   const { myInfo } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ const Messenger = () => {
   useEffect(() => {
     dispatch(getMessage([currentFriend?._id]));
   }, [currentFriend?._id]);
+  useEffect(() => {
+    scrollRef.current?.scrollIntroView({ behavior: "smooth" });
+  }, [message]);
   return (
     <div className="messenger">
       <div className="row">
@@ -105,6 +109,8 @@ const Messenger = () => {
             inputHendle={inputHendle}
             newMessage={newMessage}
             sendMessage={sendMessage}
+            message={message}
+            scrollRef={scrollRef}
           />
         ) : (
           "בחר בבקשה משתמש"
