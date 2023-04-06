@@ -16,12 +16,19 @@ const Messenger = () => {
   const scrollRef = useRef();
   const socket = useRef();
 
+  const { friends, message } = useSelector((state) => state.messenger);
+  const { myInfo } = useSelector((state) => state.auth);
+  const [currentFriend, setCurrentFriend] = useState("");
+  const [newMessage, setNewMessage] = useState("");
+
   useEffect(() => {
     socket.current = io("ws://localhost:8000");
   }, []);
+  useEffect(() => {
+    socket.current.emit("addUser", myInfo.id, myInfo);
+  }, []);
+  
   console.log(socket);
-  const [currentFriend, setCurrentFriend] = useState("");
-  const [newMessage, setNewMessage] = useState("");
   const inputHendle = (e) => {
     setNewMessage(e.target.value);
   };
@@ -35,9 +42,6 @@ const Messenger = () => {
     };
     dispatch(messageSend(data));
   };
-
-  const { friends, message } = useSelector((state) => state.messenger);
-  const { myInfo } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   useEffect(() => {
