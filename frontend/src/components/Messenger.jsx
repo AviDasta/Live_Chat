@@ -31,7 +31,7 @@ const Messenger = () => {
   useEffect(() => {
     socket.current.on("getUser", (users) => {
       const filterUser = users.filter((u) => u.userId !== myInfo.id);
-      activeUser(filterUser);
+      setActiveUser(filterUser);
     });
   }, []);
 
@@ -121,7 +121,12 @@ const Messenger = () => {
             </div>
             <div className="active-friends">
               {activeUser && activeUser.length > 0
-                ? activeUser.map((u) => <ActiveFriend user={u} />)
+                ? activeUser.map((u) => (
+                    <ActiveFriend
+                      setCurrentFriend={setCurrentFriend}
+                      user={u}
+                    />
+                  ))
                 : ""}
             </div>
             <div className="friends">
@@ -152,6 +157,7 @@ const Messenger = () => {
             scrollRef={scrollRef}
             emojiSend={emojiSend}
             imageSend={imageSend}
+            activeUser ={activeUser}
           />
         ) : (
           "בחר בבקשה משתמש"
