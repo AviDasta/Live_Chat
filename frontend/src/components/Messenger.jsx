@@ -47,6 +47,16 @@ const Messenger = () => {
       reseverId: currentFriend._id,
       message: newMessage ? newMessage : "❤",
     };
+    socket.current.emit("sendMessage", {
+      senderId: myInfo.id,
+      senderName: myInfo.userName,
+      reseverId: currentFriend._id,
+      time: new Date(),
+      message: {
+        text: newMessage ? newMessage : "❤",
+        image: "",
+      },
+    });
     dispatch(messageSend(data));
   };
 
@@ -157,7 +167,7 @@ const Messenger = () => {
             scrollRef={scrollRef}
             emojiSend={emojiSend}
             imageSend={imageSend}
-            activeUser ={activeUser}
+            activeUser={activeUser}
           />
         ) : (
           "בחר בבקשה משתמש"
