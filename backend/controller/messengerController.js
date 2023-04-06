@@ -1,10 +1,10 @@
 const User = require("../models/authModel");
 const messageModel = require("../models/messageModel");
 const formidable = require("formidable");
+const fs = require("fs");
 
 module.exports.getFriends = async (req, res) => {
   const myId = req.myId;
-  console.log(myId);
   try {
     const friendGet = await User.find({});
     const filter = friendGet.filter((userId) => userId.id !== myId);
@@ -70,6 +70,7 @@ module.exports.messageGet = async (req, res) => {
 };
 
 module.exports.ImageMessageSend = async (req, res) => {
+  const senderId = req.myId;
   const form = formidable();
 
   form.parse(req, (err, fields, files) => {
@@ -77,10 +78,36 @@ module.exports.ImageMessageSend = async (req, res) => {
     const newPath = __dirname + `../../../frontend/public/image/${imageName}`;
     files.image.originalFilename = imageName;
 
-    try{
-
-    }catch(error){
-      
+    try {
+      fs.copyFile(files.image.filepath, newPath, async (err) => {
+        if (err) {
+          res.status(500).json({
+            error: {
+              errorMessage: "Image upload failed",
+            },
+          });
+        } else {
+          const insertMessage = await messageModel.create({
+            senderId: senderId,
+            senderName: senderName,
+            reseverId: reseverId,
+            message: {
+              text: "",
+              image: files.image.originalFilename,
+            },
+          });
+          res.status(201).json({
+            success: true,
+            message: insertMessage,
+          });
+        }
+      });
+    } catch (error) {
+      res.status(500).json({
+        error: {
+          errorMessage: "Internal Server Error",
+        },
+      });
     }
   });
 };
