@@ -14,6 +14,7 @@ const RightSide = (props) => {
     emojiSend,
     imageSend,
     activeUser,
+    typingMessage,
   } = props;
   return (
     <div className="col-9">
@@ -55,7 +56,11 @@ const RightSide = (props) => {
                   </div>
                 </div>
               </div>
-              <Message message={message} currentFriend={currentFriend} />
+              <Message
+                message={message}
+                currentFriend={currentFriend}
+                typingMessage={typingMessage}
+              />
 
               <MessageSend
                 inputHendle={inputHendle}
