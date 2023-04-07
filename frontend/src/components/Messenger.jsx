@@ -12,8 +12,13 @@ import {
 } from "../store/actions/messengerAction";
 import toast, { Toaster } from "react-hot-toast";
 import { io } from "socket.io-client";
+import useSound from "use-sound";
+import notificationSound from "../audio/notification.mp3";
+import sendingSound from "../audio/sending.mp3";
 
 const Messenger = () => {
+  const [notificationSPlay] = useSound(notificationSound);
+  const [sendingSPlay] = useSound(sendingSound);
   const scrollRef = useRef();
   const socket = useRef();
 
@@ -65,6 +70,7 @@ const Messenger = () => {
       socketMessage.senderId !== currentFriend._id &&
       socketMessage.reseverId === myInfo.id
     ) {
+      notificationSPlay();
       toast.success(`שלח/ה הודעה  ${socketMessage.senderName}`);
     }
   }, [socketMessage]);
@@ -80,6 +86,7 @@ const Messenger = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
+    sendingSPlay();
     const data = {
       senderName: myInfo.userName,
       reseverId: currentFriend._id,
@@ -131,6 +138,7 @@ const Messenger = () => {
   };
 
   const imageSend = (e) => {
+    sendingSPlay();
     if (e.target.files.length !== 0) {
       const imageName = e.target.files[0].name;
       const newImageName = Date.now() + "-" + imageName;
