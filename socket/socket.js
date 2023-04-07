@@ -26,7 +26,18 @@ io.on("connection", (socket) => {
   });
   socket.on("sendMessage", (data) => {
     const user = findFriend(data.reseverId);
-    console.log(user);
+    if (user !== undefined) {
+      socket.to(user.socketId).emit("getMessage", {
+        senderId: data.senderId,
+        senderName: data.senderName,
+        reseverId: data.reseverId,
+        createAt: data.time,
+        message: {
+          text: data.message.text,
+          image: data.message.image,
+        },
+      });
+    }
   });
   socket.on("disconnect", () => {
     console.log("user is disconnected...");
