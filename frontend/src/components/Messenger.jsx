@@ -227,7 +227,7 @@ const Messenger = () => {
                           : "hover-friend"
                       }
                     >
-                      <Friends myId={myInfo} friend={fd} />
+                      <Friends myId={myInfo.id} friend={fd} />
                     </div>
                   ))
                 : "No Friend"}
