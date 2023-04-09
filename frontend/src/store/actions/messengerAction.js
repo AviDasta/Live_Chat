@@ -66,3 +66,7 @@ export const ImageMessageSend = (data) => async (dispatch) => {
     console.log(error.response.data);
   }
 };
+
+export const seenMessage = (msg) => async (dispatch) => {
+  console.log(msg);
+};
