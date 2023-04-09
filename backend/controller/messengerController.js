@@ -3,16 +3,65 @@ const messageModel = require("../models/messageModel");
 const formidable = require("formidable");
 const fs = require("fs");
 
+const getLastMessage = async (myId, fdId) => {
+  const msg = await messageModel
+    .findOne({
+      $or: [
+        {
+          $and: [
+            {
+              senderId: {
+                $eq: myId,
+              },
+            },
+            {
+              reseverId: {
+                $eq: fdId,
+              },
+            },
+          ],
+        },
+        {
+          $and: [
+            {
+              senderId: {
+                $eq: fdId,
+              },
+            },
+            {
+              reseverId: {
+                $eq: myId,
+              },
+            },
+          ],
+        },
+      ],
+    })
+    .sort({
+      updatedAt: -1,
+    });
+  return msg;
+};
 module.exports.getFriends = async (req, res) => {
   const myId = req.myId;
+  let fnd_msg = [];
   try {
     const friendGet = await User.find({
       _id: {
         $ne: myId,
       },
     });
-    console.log(friendGet);
-    res.status(200).json({ success: true, friends: friendGet });
+    for (let i = 0; i < friendGet.length; i++) {
+      let lmsg = await getLastMessage(myId, friendGet[i].id);
+      fnd_msg = [
+        ...fnd_msg,
+        {
+          fndInfo: friendGet[i],
+          msgInfo: lmsg,
+        },
+      ];
+    }
+    res.status(200).json({ success: true, friends: fnd_msg });
   } catch (error) {
     res.status(500).json({
       error: {
@@ -64,7 +113,7 @@ module.exports.messageGet = async (req, res) => {
             },
             {
               reseverId: {
-                $eq: friendId,
+                $eq: fdId,
               },
             },
           ],
