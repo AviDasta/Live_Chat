@@ -42,6 +42,22 @@ const Messenger = () => {
     socket.current.on("typingMessageGet", (data) => {
       setTypingMessage(data);
     });
+    socket.current.on("msgSeenResponse", (msg) => {
+      dispatch({
+        type: "SEEN_MESSAGE",
+        payload: {
+          msgInfo: msg,
+        },
+      });
+    });
+    socket.current.on("msgDelivaredResponse", (msg) => {
+      dispatch({
+        type: "DELIVARED_MESSAGE",
+        payload: {
+          msgInfo: msg,
+        },
+      });
+    });
   }, []);
   useEffect(() => {
     if (socketMessage && currentFriend) {
@@ -56,10 +72,12 @@ const Messenger = () => {
           },
         });
         dispatch(seenMessage(socketMessage));
+        socket.current.emit("messageSeen", socketMessage);
         dispatch({
           type: "UPDATE_FRIEND_MESSAGE",
           payload: {
             msgInfo: socketMessage,
+            status: "seen",
           },
         });
       }
@@ -82,12 +100,15 @@ const Messenger = () => {
       socketMessage.reseverId === myInfo.id
     ) {
       notificationSPlay();
-      toast.success(`שלח/ה הודעה  ${socketMessage.senderName}`);
+      toast.success(` שלח/ה הודעה  ${socketMessage.senderName}`);
       dispatch(updateMessage(socketMessage));
+      socket.current.emit("delivaredMessage", socketMessage);
+
       dispatch({
         type: "UPDATE_FRIEND_MESSAGE",
         payload: {
           msgInfo: socketMessage,
+          status: "delivared",
         },
       });
     }

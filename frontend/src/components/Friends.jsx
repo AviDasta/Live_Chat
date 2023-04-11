@@ -9,15 +9,7 @@ const Friends = (props) => {
     <div className="friend">
       <div className="friend-image">
         <div className="image">
-          {msgInfo.status === "seen" ? (
-            <img src={`./image/${fndInfo.image}`} alt="" />
-          ) : msgInfo.status === "delivared" ? (
-            <div className="delivared">
-              <FaRegCheckCircle />
-            </div>
-          ) : (
-            <div className="unseen"></div>
-          )}
+          <img src={`./image/${fndInfo.image}`} alt="" />
         </div>
       </div>
       <div className="friend-name-seen">
@@ -45,7 +37,15 @@ const Friends = (props) => {
         </div>
         {myId === msgInfo?.senderId ? (
           <div className="seen-unseen-icon">
-            <img src={`./image/${fndInfo.image}`} alt="" />
+            {msgInfo.status === "seen" ? (
+              <img src={`./image/${fndInfo.image}`} alt="" />
+            ) : msgInfo.status === "delivared" ? (
+              <div className="delivared">
+                <FaRegCheckCircle />
+              </div>
+            ) : (
+              <div className="unseen"></div>
+            )}
           </div>
         ) : (
           <div className="seen-unseen-icon">
