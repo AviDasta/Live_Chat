@@ -49,7 +49,7 @@ export const messengerReducer = (state = messengerState, action) => {
         f.fndInfo._id === payload.msgInfo.senderId
     );
     state.friends[index].msgInfo = payload.msgInfo;
-    state.friends[index].msgInfo.state = payload.status;
+    state.friends[index].msgInfo.status = payload.status;
 
     return state;
   }
@@ -66,7 +66,7 @@ export const messengerReducer = (state = messengerState, action) => {
         f.fndInfo._id === payload.msgInfo.reseverId ||
         f.fndInfo._id === payload.msgInfo.senderId
     );
-    state.friends[index].msgInfo.state = "seen";
+    state.friends[index].msgInfo.status = "seen";
     return {
       ...state,
     };
