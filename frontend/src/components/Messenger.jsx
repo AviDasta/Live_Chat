@@ -163,11 +163,20 @@ const Messenger = () => {
 
   useEffect(() => {
     if (friends && friends.length > 0) {
-      setCurrentFriend(friends[0]);
+      setCurrentFriend(friends[0].fndInfo);
     }
   }, [friends]);
   useEffect(() => {
     dispatch(getMessage([currentFriend?._id]));
+
+    if (friends.length > 0) {
+      dispatch({
+        type: "UPDATE",
+        payload: {
+          id: currentFriend._id,
+        },
+      });
+    }
   }, [currentFriend?._id]);
   useEffect(() => {
     scrollRef.current?.scrollIntroView({ behavior: "smooth" });

@@ -30,8 +30,8 @@ const Friends = (props) => {
             )}
             <span>
               {msgInfo
-                ? moment(msgInfo.createdAt).startOf("mini").fromNow()
-                : moment(fndInfo.createdAt).startOf("mini").fromNow()}
+                ? moment(msgInfo.createdAt).startOf(" mini").fromNow()
+                : moment(fndInfo.createdAt).startOf(" mini").fromNow()}
             </span>
           </div>
         </div>
