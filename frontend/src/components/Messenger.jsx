@@ -175,12 +175,6 @@ const Messenger = () => {
     dispatch(getMessage([currentFriend?._id]));
 
     if (friends.length > 0) {
-      dispatch({
-        type: "UPDATE",
-        payload: {
-          id: currentFriend._id,
-        },
-      });
     }
   }, [currentFriend?._id]);
 
@@ -190,6 +184,12 @@ const Messenger = () => {
         message[message.length - 1].senderId !== myInfo.id &&
         message[message.length - 1].status !== "seen"
       ) {
+        dispatch({
+          type: "UPDATE",
+          payload: {
+            id: currentFriend._id,
+          },
+        });
         socket.current.emit("seen", {
           senderId: currentFriend._id,
           reseverId: myInfo.id,
