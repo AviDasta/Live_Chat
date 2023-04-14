@@ -9,7 +9,7 @@ const Friends = (props) => {
     <div className="friend">
       <div className="friend-image">
         <div className="image">
-          <img src={`./image/${fndInfo.image}`} alt="" />
+          <img src={`./image/${fndInfo.image} `} alt="" />
         </div>
       </div>
       <div className="friend-name-seen">
@@ -19,14 +19,14 @@ const Friends = (props) => {
             {msgInfo && msgInfo.senderId === myId ? (
               <span>את/ה</span>
             ) : (
-              <span>{fndInfo.userName + " "}</span>
+              <span>{fndInfo.userName + "  "}</span>
             )}
             {msgInfo && msgInfo.message.text ? (
               <span>{msgInfo.message.text.slice(0, 10)}</span>
             ) : msgInfo && msgInfo.message.text ? (
-              <span>שלח/י תמונה</span>
+              <span> שלח/י תמונה </span>
             ) : (
-              <span>לחבר אותך</span>
+              <span> לחבר אותך </span>
             )}
             <span>
               {msgInfo
