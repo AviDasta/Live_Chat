@@ -9,6 +9,7 @@ import {
   DELIVARED_MESSAGE,
   UPDATE,
   MESSAGE_GET_SUCCESS_CLEAR,
+  SEEN_ALL,
 } from "../types/messengerType";
 
 const messengerState = {
@@ -81,7 +82,7 @@ export const messengerReducer = (state = messengerState, action) => {
         f.fndInfo._id === payload.msgInfo.reseverId ||
         f.fndInfo._id === payload.msgInfo.senderId
     );
-    state.friends[index].msgInfo.state = "seen";
+    state.friends[index].msgInfo.status = "delivare";
     return {
       ...state,
     };
@@ -100,6 +101,16 @@ export const messengerReducer = (state = messengerState, action) => {
     return {
       ...state,
       message_get_success: false,
+    };
+  }
+
+  if (type === SEEN_ALL) {
+    const index = state.friends.findIndex(
+      (f) => f.fndInfo._id === payload.reseverId
+    );
+    state.friends[index].msgInfo.status = "seen";
+    return {
+      ...state,
     };
   }
 
