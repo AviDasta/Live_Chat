@@ -82,6 +82,8 @@ export const authReducer = (state = authState, action) => {
       successMessage: "התנתקת בהצלחה",
     };
   }
+  
+
 
   return state;
 };
