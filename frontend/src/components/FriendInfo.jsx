@@ -1,7 +1,7 @@
 import React from "react";
-import { FaCaretSquareDown, FaEdit, FaSistrix } from "react-icons/fa";
+import { FaCaretSquareDown } from "react-icons/fa";
 
-const FriendInfo = ({ currentFriend, activeUser }) => {
+const FriendInfo = ({ currentFriend, activeUser, message }) => {
   return (
     <div className="friend-info">
       <input type="checkbox" id="gallery" />
@@ -24,17 +24,17 @@ const FriendInfo = ({ currentFriend, activeUser }) => {
 
       <div className="others">
         <div className="custom-chat">
-          <h3>Coustomise Chat </h3>
+          <h3>צ'ט מותאם אישית</h3>
           <FaCaretSquareDown />
         </div>
 
         <div className="privacy">
-          <h3>Privacy and Support </h3>
+          <h3>פרטיות ותמיכה </h3>
           <FaCaretSquareDown />
         </div>
 
         <div className="media">
-          <h3>Shared Media </h3>
+          <h3>מדיה, קישורים ומסמכים</h3>
           <label htmlFor="gallery">
             {" "}
             <FaCaretSquareDown />{" "}
@@ -43,10 +43,13 @@ const FriendInfo = ({ currentFriend, activeUser }) => {
       </div>
 
       <div className="gallery">
-        {/* <img src="/image/20003ariyan.jpg" alt="" />
-        <img src="/image/20003ariyan.jpg" alt="" />
-        <img src="/image/20003ariyan.jpg" alt="" />
-        <img src="/image/20003ariyan.jpg" alt="" /> */}
+        {message && message.length > 0
+          ? message.map((m, index) => {
+              m.message.image && (
+                <img key={index} src={`./image/${m.message.image}`} />
+              );
+            })
+          : ""}
       </div>
     </div>
   );
