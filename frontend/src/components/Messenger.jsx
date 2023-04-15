@@ -284,7 +284,7 @@ const Messenger = () => {
                 />
               </div>
             </div>
-            <div className="active-friends">
+            {/* <div className="active-friends">
               {activeUser && activeUser.length > 0
                 ? activeUser.map((u) => (
                     <ActiveFriend
@@ -293,7 +293,7 @@ const Messenger = () => {
                     />
                   ))
                 : ""}
-            </div>
+            </div> */}
             <div className="friends">
               {friends && friends.length > 0
                 ? friends.map((fd) => (
@@ -305,7 +305,11 @@ const Messenger = () => {
                           : "hover-friend"
                       }
                     >
-                      <Friends myId={myInfo.id} friend={fd} />
+                      <Friends
+                        activeUser={activeUser}
+                        myId={myInfo.id}
+                        friend={fd}
+                      />
                     </div>
                   ))
                 : "No Friend"}
