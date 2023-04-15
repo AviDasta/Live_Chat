@@ -164,7 +164,7 @@ module.exports.userLogin = async (req, res) => {
             ),
           };
           res.status(200).cookie("authToken", token, options).json({
-            successMessage: "ההרשמה הוצלחה",
+            successMessage: "ההתחברות הוצלחה",
             token,
           });
         } else {
@@ -189,4 +189,10 @@ module.exports.userLogin = async (req, res) => {
       });
     }
   }
+};
+
+module.exports.userLogout = (req, res) => {
+  res.status(200).cookie("authToken", "").json({
+    success: true,
+  });
 };
