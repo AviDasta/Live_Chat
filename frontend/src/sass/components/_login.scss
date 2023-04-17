@@ -1,6 +1,5 @@
-.register {
-  // background-color: black !important;
-  // background-color: #1c3f8fd4 !important;
+.login {
+  background-color: #1c3f8fd4;
   width: 100%;
   height: 100vh;
   background-color: azure;
@@ -11,19 +10,18 @@
     border-radius: 7%;
     .card-header {
       h3 {
+        background-color: darkcyan;
+        border-radius: 70%;
         text-align: center;
         color: #fff;
       }
-      background-color: darkcyan;
-      border-radius: 70%;
     }
     .card-body {
       .form-group {
         span {
+          border-radius: 50%;
           background-color: darkcyan;
-          border-radius: 70%;
         }
-        border-radius: 70%;
         .form-control {
           color: #fff;
         }
@@ -60,7 +58,6 @@
             }
             label {
               background-color: #0a0e1585;
-
               padding: 8px;
               margin-bottom: 0px;
               width: 120px;
@@ -68,8 +65,6 @@
               border-radius: 50px;
               margin-left: 10px;
               cursor: pointer;
-              background-color: darkcyan;
-              // border-radius: 70%;
             }
           }
         }
@@ -77,9 +72,8 @@
     }
   }
 }
-
 @media only screen and (max-width: 600px) {
-  .register {
+  .login {
     background-color: #1c3f8fd4 !important;
   }
 }

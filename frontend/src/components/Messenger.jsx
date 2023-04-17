@@ -273,6 +273,7 @@ const Messenger = () => {
   }, []);
 
   const search = (e) => {
+    const lenguage = (window.location.search = "hl=he-IL");
     const getFriendClass = document.getElementsByClassName("hover-friend");
     const friendNameClass = document.getElementsByClassName("Fd_name");
     for (
@@ -280,7 +281,7 @@ const Messenger = () => {
       i < getFriendClass.length, i < friendNameClass.length;
       i++
     ) {
-      let text = friendNameClass[i].innerText.toLowerCase();
+      let text = lenguage.friendNameClass[i].innerText.toLowerCase();
       if (text.indexOf(e.target.value.toLowerCase()) - 1) {
         getFriendClass[i].style.display = "";
       } else {
@@ -307,9 +308,13 @@ const Messenger = () => {
                 <div className="image">
                   <img src={`./image/${myInfo.image}`} alt="" />
                 </div>
+                <div className="user-name-phone">
+                  <h3>{myInfo.userName}</h3>
+                </div>
                 <div className="name">
                   <h3>{myInfo.userName}</h3>
                 </div>
+
                 <div className="icons">
                   <div
                     onClick={() => {
@@ -348,6 +353,19 @@ const Messenger = () => {
                       <FaSignOutAlt /> התנתק/י
                     </div>
                   </div>
+                  <div className="friend-search">
+                    <div className="search">
+                      <button>
+                        <FaSistrix />
+                      </button>
+                      <input
+                        onChange={search}
+                        type="text"
+                        placeholder="חיפוש"
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -359,7 +377,7 @@ const Messenger = () => {
                 <input
                   onChange={search}
                   type="text"
-                  placeholder="Search"
+                  placeholder="חיפוש"
                   className="form-control"
                 />
               </div>

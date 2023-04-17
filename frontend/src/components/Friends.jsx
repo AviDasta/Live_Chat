@@ -65,7 +65,7 @@ const Friends = (props) => {
             ) : msgInfo && msgInfo.message.text ? (
               <span> שלח/י תמונה </span>
             ) : (
-              <span> לחבר אותך </span>
+              <span> שלח/י הודעה - </span>
             )}
             <span>
               {msgInfo

@@ -73,9 +73,9 @@ const Message = ({ message, currentFriend, scrollRef, typingMessage }) => {
         ) : (
           <div className="friend_connect">
             <img src={`./image/${currentFriend.image}`} alt="" />
-            <h3>יצר/ה קשר {currentFriend.userName}</h3>
+            <h3>שלח/י הודעה ל - {currentFriend.userName}</h3>
             <span>
-              {moment(currentFriend.createdAt).startOf("mini").fromNow()}
+              {moment(currentFriend.createdAt).startOf("mini").fromNow()} - התחברות אחרונה
             </span>
           </div>
         )}

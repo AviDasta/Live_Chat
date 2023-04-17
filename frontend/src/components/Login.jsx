@@ -44,7 +44,7 @@ const Login = () => {
     }
   }, [successMessage, error]);
   return (
-    <div className="register">
+    <div className="login">
       <div className="card">
         <div className="card-header">
           <h3>התחברות</h3>
